@@ -60,7 +60,8 @@ let player;
 /**
  * @typedef {{
  * pos: Vector,
- * angle: number
+ * angle: number,
+ * size: number
  * }} FBullet
  */
 
@@ -154,7 +155,8 @@ function update() {
       // Create the bullet
       fBullets.push({
           pos: vec(player.pos.x, player.pos.y),
-          angle: player.rotation*PI/2 - PI/2
+          angle: player.rotation*PI/2 - PI/2,
+          size: blastSize
       });
       // Reset the firing cooldown
       player.firingCooldown = G.PLAYER_FIRE_RATE;
@@ -180,7 +182,7 @@ function update() {
     
     // Drawing
     color("red");
-    box(fb.pos, blastSize);
+    box(fb.pos, fb.size);
 });
 
 remove(missiles, (m) => {
